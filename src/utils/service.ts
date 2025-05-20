@@ -36,7 +36,11 @@ const service = {
         return response;
       }
     } catch (error) {
-      throw error.message;
+      if (error instanceof Error) {
+        throw error.message;
+      } else {
+        throw String(error);
+      }
     }
   },
   post: async (url: string, data: object) => {
